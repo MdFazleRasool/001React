@@ -1,18 +1,35 @@
-import React, { useState } from 'react' ;
+import React, { useEffect, useState } from 'react' ;
 
-function App() {
+function App({initialTasks}) {
 
-  const [tasks , setTasks ] = useState([]);
+  // const [tasks , setTasks ] = useState(initialTasks || window.__initialtasks__ || []);
+  const [tasks, setTasks] = useState(() => {
+    if (initialTasks) return initialTasks;
+    if (typeof window !== "undefined") {
+      return window.__initialtasks__ || [];
+    }
+    return [];
+  });
   const [task , setTask ] = useState("");
 
   function addTodo(e){
     if(task){
-      setTasks([...tasks , task]) ;
+      setTasks([...tasks , {id:tasks.length+1 , title: task}]) ;
       setTask("") ;
     }
   }
 
-  
+  // async function downloadTodos(){
+  //   const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+  //   const data = await response.json();
+  //   setTasks(data);
+  // }
+
+  useEffect(() =>{
+    //setTasks(initialTasks) ;
+    console.log("initial task",initialTasks);
+    
+  },[initialTasks])
 
   return (
     <div>
@@ -27,8 +44,8 @@ function App() {
       <button onClick={addTodo}>Add Task In List</button>
 
       <ul>
-        {tasks.map((task,index) =>(
-          <li key={index}>{task}</li>
+        {tasks && tasks.map((task) =>(
+          <li key={task.id}>{task.title}</li>
         ))}
       </ul>
     </div>

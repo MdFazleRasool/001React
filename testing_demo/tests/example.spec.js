@@ -13,7 +13,9 @@ test('basic test', async ({ mount , page }) => {
   await expect(component).toContainText('Learn React') ;
   await expect (countSpan).toHaveText('1');
 
-  
+  const screenshot = await page.screenshot({path : `screenshots/ss-${page.viewportSize().width}.png`});
+
+  await expect(page).toHaveScreenshot() ;
 
 
 

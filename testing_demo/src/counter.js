@@ -4,8 +4,8 @@ export default function Counter() {
 
     return(
         <div>
-            <p  className="text-for-small-screen">Count :  <span   data-testid="count"> {count} </span></p>
-            <button onClick={() => setCount(count+1)}>Increment</button>
+            <p  className="text-for-small-screen">Count :  <span   data-testid="count">{count}</span></p>
+            <button data-testid="inc-btn"  onClick={() => setCount(count+1)}>Increment</button>
         </div>
     );
 }

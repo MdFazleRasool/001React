@@ -1,3 +1,9 @@
+### API-based React application that fetches and displays Pokemon data using external REST API.
+
+## Run Locally
+npm install
+npm run dev
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
